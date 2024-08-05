@@ -4,8 +4,11 @@
     import "./globals.css";
     import { getStrapiMedia, getStrapiURL } from "./utils/api-helpers";
     import { fetchAPI } from "./utils/fetch-api";
-    
+    import { Inter } from 'next/font/google';
     import { i18n } from "../../../i18n-config";
+
+    const inter = Inter({ subsets: ['latin'] })
+    
     import Footer from "./components/footer";
     import Navbar from "./components/navbar";
     
@@ -80,8 +83,8 @@
       );
     
       return (
-        <html lang={params.lang}>
-          <body>
+        <html lang={params.lang} className="font-sans">
+          <body className={inter.className}>
             <Navbar
               links={navbar.links}
               logoUrl={navbarLogoUrl}

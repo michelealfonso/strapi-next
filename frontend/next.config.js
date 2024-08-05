@@ -1,10 +1,9 @@
-    // ./frontend/next.config.js
-    
+   
     /** @type {import('next').NextConfig} */
     
     const nextConfig = {
         experimental: {
-          // appDir: true,
+          appDir: true,
         },
         images: {
           remotePatterns: [
@@ -12,7 +11,7 @@
               protocol: 'http',
               hostname: 'localhost',
               port: '1337',
-              pathname: '/uploads/**',
+              pathname: '/uploads/**/*',
             },
             {
               protocol: 'https',

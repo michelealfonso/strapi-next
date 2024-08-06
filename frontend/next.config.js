@@ -2,9 +2,9 @@
     /** @type {import('next').NextConfig} */
     
     const nextConfig = {
-        experimental: {
-          appDir: true,
-        },
+        // experimental: {
+        //   appDir: true,
+        // },
         images: {
           remotePatterns: [
             {
@@ -12,11 +12,14 @@
               hostname: 'localhost',
               port: '1337',
               pathname: '/uploads/**/*',
+              
+              
             },
             {
               protocol: 'https',
               hostname: 'images.pexels.com',
-            }
+              
+            },
           ],
         },
       }

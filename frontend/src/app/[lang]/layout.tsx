@@ -58,6 +58,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }));
+}
+
 export default async function RootLayout({
   children,
   params,
@@ -80,7 +84,7 @@ export default async function RootLayout({
 
   return (
     <html lang={params.lang}>
-      <body>
+      <body className="dark:bg-black dark:text-gray-100 min-h-screen">
         <Navbar
           links={navbar.links}
           logoUrl={navbarLogoUrl}
@@ -102,8 +106,4 @@ export default async function RootLayout({
       </body>
     </html>
   );
-}
-
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
 }

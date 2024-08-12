@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { getStrapiMedia, getStrapiURL } from "./utils/api-helpers";
 import { fetchAPI } from "./utils/fetch-api";
-import { Inter } from 'next/font/google';
 import { i18n } from "../../../i18n-config";
 
+import { Inter } from 'next/font/google';
+const inter = Inter({ subsets: ['latin'] })
 
 import Footer from "./components/footer";
 import Navbar from "./components/navbar";
@@ -58,10 +59,6 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
-
 export default async function RootLayout({
   children,
   params,
@@ -71,7 +68,7 @@ export default async function RootLayout({
 }) {
   const global = await getGlobal();
   if (!global.data) return null;
-
+  
   const { navbar, footer } = global.data.attributes;
 
   const navbarLogoUrl = getStrapiMedia(
@@ -84,7 +81,7 @@ export default async function RootLayout({
 
   return (
     <html lang={params.lang}>
-      <body className="dark:bg-black dark:text-gray-100 min-h-screen">
+      <body className={inter.className}>
         <Navbar
           links={navbar.links}
           logoUrl={navbarLogoUrl}
@@ -105,5 +102,9 @@ export default async function RootLayout({
         />
       </body>
     </html>
-  );
+  )
+}
+
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }));
 }
